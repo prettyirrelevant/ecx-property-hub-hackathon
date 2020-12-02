@@ -7,12 +7,12 @@ from sentry_sdk.integrations.django import DjangoIntegration
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SENTRY = sentry_sdk.init(
-    dsn="demo",
-    integrations=[DjangoIntegration()],
-    traces_sample_rate=1.0,
-    send_default_pii=True,
-)
+# SENTRY = sentry_sdk.init(
+#     dsn="demo",
+#     integrations=[DjangoIntegration()],
+#     traces_sample_rate=1.0,
+#     send_default_pii=True,
+# )
 
 SECRET_KEY = "*16_f^gvohcod5i3ikji!n2b*8i#y-fj-vaa&i8z-us9_f+w7d"
 
