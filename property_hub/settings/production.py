@@ -34,7 +34,12 @@ CLOUDINARY = cloudinary.config(
 )
 
 HUEY = {
-    "name": "property_hub",
+    "name": "property-hub",
     "url": env("REDIS_URL"),
+    "immediate_use_memory": False,
     'immediate': False,
+    "consumer": {
+        "workers": 4,
+        "worker_type": "thread",
+    },
 }
