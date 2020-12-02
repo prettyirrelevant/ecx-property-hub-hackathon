@@ -29,7 +29,6 @@ class AddListingView(generics.CreateAPIView):
         )
 
 
-# TODO add filter functionality
 class AllListingsView(generics.ListAPIView):
     serializer_class = ListingSerializer
     queryset = Listing.objects.all()
