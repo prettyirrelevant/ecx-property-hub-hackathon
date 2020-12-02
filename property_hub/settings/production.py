@@ -35,5 +35,5 @@ CLOUDINARY = cloudinary.config(
 
 HUEY = {
     "name": "property_hub",
-    "url": env("REDISTOGO_URL"),
+    "url": env("REDIS_URL"),
 }
