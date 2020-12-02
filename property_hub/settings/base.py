@@ -8,7 +8,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SENTRY = sentry_sdk.init(
-    dsn="https://c070cbcdb0f14c03a2eff465350213e2@o461437.ingest.sentry.io/5463209",
+    dsn="demo",
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,
     send_default_pii=True,
