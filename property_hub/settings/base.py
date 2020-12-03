@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "cloudinary",
     "accounts.apps.AccountsConfig",
     "listings",
+    "mock",
 ]
 
 REST_FRAMEWORK = {

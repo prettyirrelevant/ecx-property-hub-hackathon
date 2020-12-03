@@ -19,6 +19,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("", index, name="index"),
+    path("api/", include("mock.urls")),
     path("api/", include("accounts.urls")),
     path("api/", include("listings.urls")),
     path(
