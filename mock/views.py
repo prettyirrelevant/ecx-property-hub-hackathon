@@ -43,6 +43,100 @@ def listings(request):
 
 
 @api_view(["GET"])
+def listing(request, id: int):
+    schema = Schema(
+        schema=lambda: {
+            "id": id,
+            "name": _("text.sentence"),
+            "description": _("text"),
+            "is_furnished": _("development.boolean"),
+            "is_new": _("development.boolean"),
+            "bedrooms": _("numbers.integer_number", start=0, end=6),
+            "bathrooms": _("numbers.integer_number", start=0, end=8),
+            "no_of_likes": _("numbers.integer_number", start=0, end=100),
+            "location": _("address"),
+            "listing_images": [
+                {"image_url": _("person.avatar")},
+                {"image_url": _("person.avatar")},
+                {"image_url": _("person.avatar")},
+            ],
+            "created_on": _("timestamp", posix=False),
+            "reviews": [
+                {
+                    "user": {
+                        "email": _("person.email", domains=["test.com"], key=str.lower),
+                        "first_name": _("person.name"),
+                        "last_name": _("person.surname"),
+                        "image_url": _("person.avatar"),
+                        "date_joined": _("timestamp", posix=False),
+                    },
+                    "timestamp": _("timestamp", posix=False),
+                    "message": _("text.sentence"),
+                },
+                {
+                    "user": {
+                        "email": _("person.email", domains=["test.com"], key=str.lower),
+                        "first_name": _("person.name"),
+                        "last_name": _("person.surname"),
+                        "image_url": _("person.avatar"),
+                        "date_joined": _("timestamp", posix=False),
+                    },
+                    "timestamp": _("timestamp", posix=False),
+                    "message": _("text.sentence"),
+                },
+                {
+                    "user": {
+                        "email": _("person.email", domains=["test.com"], key=str.lower),
+                        "first_name": _("person.name"),
+                        "last_name": _("person.surname"),
+                        "image_url": _("person.avatar"),
+                        "date_joined": _("timestamp", posix=False),
+                    },
+                    "timestamp": _("timestamp", posix=False),
+                    "message": _("text.sentence"),
+                },
+                {
+                    "user": {
+                        "email": _("person.email", domains=["test.com"], key=str.lower),
+                        "first_name": _("person.name"),
+                        "last_name": _("person.surname"),
+                        "image_url": _("person.avatar"),
+                        "date_joined": _("timestamp", posix=False),
+                    },
+                    "timestamp": _("timestamp", posix=False),
+                    "message": _("text.sentence"),
+                },
+                {
+                    "user": {
+                        "email": _("person.email", domains=["test.com"], key=str.lower),
+                        "first_name": _("person.name"),
+                        "last_name": _("person.surname"),
+                        "image_url": _("person.avatar"),
+                        "date_joined": _("timestamp", posix=False),
+                    },
+                    "timestamp": _("timestamp", posix=False),
+                    "message": _("text.sentence"),
+                },
+            ],
+            "agent": {
+                "user": {
+                    "email": _("person.email", domains=["test.com"], key=str.lower),
+                    "first_name": _("person.name"),
+                    "last_name": _("person.surname"),
+                    "image_url": _("person.avatar"),
+                    "date_joined": _("timestamp", posix=False),
+                },
+                "phone_number": _("person.telephone"),
+                "agent_display_name": _("business.company"),
+            },
+        }
+    )
+
+    data = schema.create(iterations=int(request.query_params.get("l", 5)))
+    return Response(data, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
 def saved_listings(request):
     schema = Schema(
         schema=lambda: {
