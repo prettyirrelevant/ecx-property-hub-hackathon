@@ -19,7 +19,7 @@ SECRET_KEY = "*16_f^gvohcod5i3ikji!n2b*8i#y-fj-vaa&i8z-us9_f+w7d"
 DEBUG = True
 
 # TODO don't forget to change this
-ALLOWED_HOSTS = ["ecx-property-hub.herokuapp.com"]
+ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 

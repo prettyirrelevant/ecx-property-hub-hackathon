@@ -70,6 +70,10 @@ class ListingImage(models.Model):
     image_file = CloudinaryField("image")
     timestamp = models.DateTimeField(_("timestamp"), auto_now_add=True)
 
+    @property
+    def image_url(self):
+        return f"https://res.cloudinary.com/dybhjquqy/{self.image_file}"
+
 
 class Review(models.Model):
     listing = models.ForeignKey(

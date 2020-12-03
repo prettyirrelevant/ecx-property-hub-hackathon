@@ -4,6 +4,8 @@ from .base import *
 
 env = environ.Env(DEBUG=(bool, False))
 
+ALLOWED_HOSTS = [env("ALLOWED_HOSTS")]
+
 DEBUG = env("DEBUG")
 
 SECRET_KEY = env("SECRET_KEY")

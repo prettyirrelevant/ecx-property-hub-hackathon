@@ -5,10 +5,11 @@ from .models import Listing, ListingImage, Review
 
 
 class ListingImageSerializer(serializers.ModelSerializer):
+    image_url = serializers.ReadOnlyField()
+
     class Meta:
         model = ListingImage
-        fields = ("image_file",)
-        extra_kwargs = {"image_file": {"read_only": True}}
+        fields = ("image_url",)
 
 
 class ReviewSerializer(serializers.ModelSerializer):
