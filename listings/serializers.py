@@ -46,6 +46,7 @@ class ListingSerializer(serializers.ModelSerializer):
             "description",
             "price",
             "is_new",
+            "is_furnished",
             "reviews",
             "bedrooms",
             "bathrooms",

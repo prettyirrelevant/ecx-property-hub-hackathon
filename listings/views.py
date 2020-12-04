@@ -30,6 +30,13 @@ class AddListingView(generics.CreateAPIView):
 
 
 class AllListingsView(generics.ListAPIView):
+    """
+    For filtering results...
+    price: For 1m+, pass 1000001 as query value e.g price=1000001
+    bathrooms: For 4+ bathrooms, pass 5 as query value e.g bathrooms=5
+    bedrooms: For 4+ bedrooms, pass 5 as query value e.g bedrooms=5
+    is_furnished: Pass 1 or 0 to represent value
+    """
     serializer_class = ListingSerializer
     queryset = Listing.objects.all()
 
@@ -39,8 +46,32 @@ class AllListingsView(generics.ListAPIView):
         if len(queries) < 1:
             return self.queryset.all()
         else:
-            print(queries)
-            return self.queryset.all()
+            model = self.queryset.all()
+            price = queries.get('price', None)
+            bedrooms = queries.get('bedrooms', None)
+            bathrooms = queries.get('bathrooms', None)
+            is_furnished = queries.get('is_furnished', None)
+
+            if price and price != 'Any':
+                if price > 1000000:
+                    model.filter(price__gte=price)
+                else:
+                    model.filter(price__lte=price)
+
+            if bedrooms and bedrooms != 'Any':
+                if bedrooms > 5:
+                    model.filter(bedrooms__gte=bedrooms)
+                else:
+                    model.filter(bedrooms__lte=bedrooms)
+
+            if bathrooms and bathrooms != 'Any':
+                if bathrooms > 5:
+                    model.filter(bathrooms__gte=bathrooms)
+                else:
+                    model.filter(bathrooms__lte=bathrooms)
+
+            if is_furnished and is_furnished != 'Any':
+                model.filter(is_furnished=bool(is_furnished))
 
 
 class SingleListingView(generics.RetrieveAPIView):
@@ -111,6 +142,12 @@ def unsave_listing(request, pk):
 @api_view(["POST"])
 @permission_classes([CustomIsAuthenticated, UserOnly])
 def add_review(request, pk):
+    """
+    Sample request:
+    {
+        "message": "I think this apartment is a scam"
+    }
+    """
     # get the listing instance
     listing = get_object_or_404(Listing, id=pk)
 
@@ -125,6 +162,9 @@ def add_review(request, pk):
 
 
 class SearchListingView(generics.ListAPIView):
+    """
+    Example: https://ecx-property-hub.herokuapp.com/api/listings/search/?q=two+bedroom+flat
+    """
     serializer_class = ListingSerializer
     queryset = Listing
 
