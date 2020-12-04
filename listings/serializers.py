@@ -49,7 +49,7 @@ class ListingSerializer(serializers.ModelSerializer):
             "reviews",
             "bedrooms",
             "bathrooms",
-            "is_furnished",
+            "lounges",
             "no_of_likes",
             "listing_images",
             "created_on",

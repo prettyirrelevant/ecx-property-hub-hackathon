@@ -13,7 +13,7 @@ def listings(request):
             "id": _("uuid"),
             "name": _("text.sentence"),
             "description": _("text"),
-            "is_furnished": _("development.boolean"),
+            "lounges": _("numbers.integer_number", start=0, end=8),
             "is_new": _("development.boolean"),
             "bedrooms": _("numbers.integer_number", start=0, end=6),
             "bathrooms": _("numbers.integer_number", start=0, end=8),
@@ -43,16 +43,16 @@ def listings(request):
 
 
 @api_view(["GET"])
-def listing(request, id: int):
+def listing(request, pk: int):
     schema = Schema(
         schema=lambda: {
-            "id": id,
+            "id": pk,
             "name": _("text.sentence"),
             "description": _("text"),
-            "is_furnished": _("development.boolean"),
             "is_new": _("development.boolean"),
             "bedrooms": _("numbers.integer_number", start=0, end=6),
             "bathrooms": _("numbers.integer_number", start=0, end=8),
+            "lounges": _("numbers.integer_number", start=0, end=8),
             "no_of_likes": _("numbers.integer_number", start=0, end=100),
             "location": _("address"),
             "listing_images": [
@@ -143,7 +143,7 @@ def saved_listings(request):
             "id": _("uuid"),
             "name": _("text.sentence"),
             "description": _("text"),
-            "is_furnished": _("development.boolean"),
+            "lounges": _("numbers.integer_number", start=0, end=8),
             "is_new": _("development.boolean"),
             "bedrooms": _("numbers.integer_number", start=0, end=6),
             "bathrooms": _("numbers.integer_number", start=0, end=8),

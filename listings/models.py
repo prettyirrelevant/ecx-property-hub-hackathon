@@ -51,7 +51,7 @@ class Listing(models.Model):
     likes = models.ManyToManyField(CustomUser, related_name="listing_likes")
     bedrooms = models.IntegerField(_("bedrooms"), default=0)
     bathrooms = models.IntegerField(_("bathrooms"), default=0)
-    is_furnished = models.BooleanField(_("is furnished"), default=False)
+    lounges = models.IntegerField(_("lounges"), default=0)
     created_on = models.DateTimeField(_("created_on"), auto_now_add=True)
 
     search_vector = SearchVectorField(null=True)
