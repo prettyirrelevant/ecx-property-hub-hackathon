@@ -32,6 +32,7 @@ class AddListingView(generics.CreateAPIView):
 class AllListingsView(generics.ListAPIView):
     """
     For filtering results...
+    e.g https://ecx-property-hub.herokuapp.com/?price=100000&is_furnished=1
     price: For 1m+, pass 1000001 as query value e.g price=1000001
     bathrooms: For 4+ bathrooms, pass 5 as query value e.g bathrooms=5
     bedrooms: For 4+ bedrooms, pass 5 as query value e.g bedrooms=5
