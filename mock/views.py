@@ -132,7 +132,7 @@ def listing(request, id: int):
         }
     )
 
-    data = schema.create(iterations=int(request.query_params.get("l", 5)))
+    data = schema.create(iterations=1)
     return Response(data, status=status.HTTP_200_OK)
 
 
